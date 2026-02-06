@@ -13,12 +13,13 @@ return new class extends Migration
             $table->foreignId('user_id')
                   ->constrained()
                   ->cascadeOnDelete();
-
+  $table->string('phone')->nullable();
+          /*  i feel like hizi fields zitakuwa implied  based on hio foreign key so kuziredeclare ni redundant
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('phone')->nullable();
+          
             $table->string('gender')->nullable();
-            $table->date('date_of_birth')->nullable();
+            $table->date('date_of_birth')->nullable(); */
 
             $table->string('profile_photo')->nullable();
 
