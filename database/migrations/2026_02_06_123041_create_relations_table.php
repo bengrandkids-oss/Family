@@ -17,7 +17,7 @@ return new class extends Migration
                   ->constrained('family_members')
                   ->cascadeOnDelete();
 
-            $table->string('relationship_type');
+            $table->enum('relationship_type',["father","mother","spouse"]);
             /*
              Examples:
              - father
