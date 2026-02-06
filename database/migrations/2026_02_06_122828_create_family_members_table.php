@@ -20,8 +20,9 @@ return new class extends Migration
             
             $table->string('first_name');
             $table->string('last_name')->nullable();
-            $table->string('gender', 10)->nullable();
-            $table->date('date_of_birth')->nullable();
+            $table->string("family_name');
+            $table->enum('gender', ["male", "female"]);
+            $table->date('date_of_birth');
             $table->date('date_of_death')->nullable();
             $table->string('photo')->nullable();
             
