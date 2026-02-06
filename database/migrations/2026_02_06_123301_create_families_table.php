@@ -12,7 +12,7 @@ return new class extends Migration
             $table->ulid('id')->primary();
             $table->string('family_name');     
             $table->text('description')->nullable();
-            $table->foreignId('user_id')
+            $table->foreignId('father_id')
                   ->constrained()
                   ->cascadeOnDelete();
 
