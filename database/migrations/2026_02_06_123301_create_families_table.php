@@ -10,11 +10,17 @@ return new class extends Migration
     {
         Schema::create('families', function (Blueprint $table) {
             $table->ulid('id')->primary();
-            $table->string('family_name');     
+
+            $table->string('family_name');  
+
             $table->text('description')->nullable();
-            $table->foreignId('user_id')
-                  ->constrained()
-                  ->cascadeOnDelete();
+
+            $table->ulid("father_id")->unique();
+            $table->foreign("father_id")->references("member_id")->on("family_members")->cascadeOnDelete();
+
+            // $table->foreignId('user_id')
+            //       ->constrained("family_mambers")
+            //       ->cascadeOnDelete();
 
             $table->timestamps();
         });

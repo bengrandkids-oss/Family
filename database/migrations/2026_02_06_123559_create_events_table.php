@@ -10,16 +10,15 @@ return new class extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
            $table->ulid('id')->primary();
+           
+            // $table->foreignId('user_id')
+            //       ->constrained()
+            //       ->cascadeOnDelete();
 
-        
-            $table->foreignId('user_id')
-                  ->constrained()
-                  ->cascadeOnDelete();
-
-            $table->foreignUlid('family_member_id')
-                  ->nullable()
-                  ->constrained('family_members')
-                  ->nullOnDelete();
+            // $table->foreignUlid('family_member_id')
+            //       ->nullable()
+            //       ->constrained('family_members')
+            //       ->nullOnDelete();
 
             $table->string('title');
             $table->text('description')->nullable();

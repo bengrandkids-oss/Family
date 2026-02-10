@@ -10,14 +10,16 @@ return new class extends Migration
     {
         Schema::create('relations', function (Blueprint $table) {
             $table->ulid('id')->primary();
-            $table->foreignUlid('family_member_id')
-                  ->constrained('family_members')
-                  ->cascadeOnDelete();
-            $table->foreignUlid('related_family_member_id')
-                  ->constrained('family_members')
-                  ->cascadeOnDelete();
 
-            $table->string('relationship_type');
+            $table->ulid("primary");
+            $table->foreign("primary")->references("member_id")->on("family_members");
+
+            $table->ulid("secondary");
+            $table->foreign("secondary")->references("member_id")->on("family_members");
+
+            $table->enum('relationship_type',["father","mother","spouse"]);
+            $table->timestamps();
+
             /*
              Examples:
              - father
@@ -25,14 +27,12 @@ return new class extends Migration
              - child
              - spouse
              - sibling
-             */
-
-            $table->timestamps();
+             */            
 
             // Prevent duplicate relationships
             $table->unique([
-                'family_member_id',
-                'related_family_member_id',
+                'primary',
+                "secondary",
                 'relationship_type'
             ]);
         });

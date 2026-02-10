@@ -9,27 +9,18 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('family_members', function (Blueprint $table) {
-            $table->ulid('id')->primary();
 
-            
-            //$table->foreignId('user_id')
-              //    ->nullable()
-               //   ->constrained('users')
-                //->nullOnDelete();
-
-            
+            $table->ulid('member_id')->primary();            
             $table->string('first_name');
             $table->string('last_name')->nullable();
-            $table->string('gender', 10)->nullable();
-            $table->date('date_of_birth')->nullable();
+            $table->string("family_name")->nullable();
+            $table->enum("gender",["male","female"]);
+            $table->date('date_of_birth');
             $table->date('date_of_death')->nullable();
-            $table->string('photo')->nullable();
-            
-
-            
-            $table->boolean('is_root')->default(false);
+            $table->string('photo')->nullable();       
 
             $table->timestamps();
+
         });
     }
 
